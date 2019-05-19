@@ -1,0 +1,17 @@
+article {
+  width: 80%;
+}
+form.create input,
+form.create textarea {
+  width: calc(100% - 42px);
+  margin: 0 0 20px;
+  padding: 10px 20px;
+  border: 1px solid #61dafb;
+  font-size: 16px;
+}
+form.create input[type=submit] {
+  width: auto;
+  background: transparent;
+  color: #61dafb;
+  text-decoration: none;
+}

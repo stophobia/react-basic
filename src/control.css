@@ -1,0 +1,15 @@
+ul.control li {
+  float: left;
+  margin: 0 10px;
+  list-style: none;
+}
+ul.control li a,
+ul.control li input {
+  border: 1px solid #61dafb;
+  display: block;
+  padding: 10px 20px;
+  background: transparent;
+  color: #61dafb;
+  font-size: 16px;
+  text-decoration: none;
+}
