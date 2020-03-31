@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import Header from './components/Header';
-import Control from './components/Control';
-import Nav from './components/Nav';
-import ReadContent from './components/ReadContent';
-import CreateContent from './components/CreateContent';
-import UpdateContent from './components/UpdateContent';
-import Footer from './components/Footer';
-import './App.css';
+import React, { Component } from 'react'
+import Header from './components/Header'
+import Control from './components/Control'
+import Nav from './components/Nav'
+import ReadContent from './components/ReadContent'
+import CreateContent from './components/CreateContent'
+import UpdateContent from './components/UpdateContent'
+import Footer from './components/Footer'
+import './App.css'
 
 class App extends Component {
   constructor(props){
-    super(props);
-    this.max_content_id = 3;
+    super(props)
+    this.max_content_id = 3
     this.state = {
       mode: 'read',
       selected_content_id: 0,
@@ -44,29 +44,27 @@ class App extends Component {
     }
   }
   getReadContent() {
-    var i = 0;
-    while(i < this.state.content.length) {
-      var data = this.state.content[i];
-      if(data.id === this.state.selected_content_id) {
-        return data;
-      }
-      i = i + 1;
+    let i = 0
+    while (i < this.state.content.length) {
+      const data = this.state.content[i]
+      if (data.id === this.state.selected_content_id) return data
+      i = i + 1
     }
   }
   getContent() {
-    var _title, _description, _article = null;
-    if(this.state.mode === 'welcome'){
-      _title = this.state.content[0].title;
-      _description = this.state.content[0].description;
+    let _title, _description, _article = null
+    if (this.state.mode === 'welcome') {
+      _title = this.state.content[0].title
+      _description = this.state.content[0].description
       _article = <ReadContent title={_title} description={_description}></ReadContent>
-    }else if(this.state.mode === 'read'){
-      var _content = this.getReadContent();
+    } else if(this.state.mode === 'read') {
+      const _content = this.getReadContent()
       _article = <ReadContent title={_content.title} description={_content.description}></ReadContent>
-    }else if(this.state.mode === 'create'){
+    } else if(this.state.mode === 'create') {
       _article = <CreateContent onSubmit={function(_id, _title, _description) {
-        this.max_content_id = this.max_content_id + 1;
+        this.max_content_id = this.max_content_id + 1
         // 1. concat
-        // var _content = this.state.content.concat(
+        // const _content = this.state.content.concat(
         //   {
         //     id: this.max_content_id,
         //     title: _title,
@@ -79,31 +77,31 @@ class App extends Component {
         //   }
         // )
         // 2. Array.from
-        var newContent = Array.from(this.state.content);
+        const newContent = Array.from(this.state.content)
         newContent.push(
           {
             id: this.max_content_id,
             title: _title,
             description: _description,
           }
-        );
+        )
         this.setState(
           {
             content: newContent
           }
         )
       }.bind(this)}></CreateContent>
-    }else if(this.state.mode === 'update'){
-      _content = this.getReadContent();
-      _article = <UpdateContent data={_content} onSubmit={function(_id, _title, _description) {
-        var _content = Array.from(this.state.content);
-        var i = 0;
-        while(i < _content.length) {
-          if(_content[i].id === _id) {
-            _content[i] = {id: _id, title: _title, description: _description};
-            break;
+    } else if (this.state.mode === 'update') {
+      const _content = this.getReadContent()
+      _article = <UpdateContent data={ _content } onSubmit={ function(_id, _title, _description) {
+        const _content = Array.from(this.state.content)
+        let i = 0
+        while (i < _content.length) {
+          if (_content[i].id === _id) {
+            _content[i] = { id: _id, title: _title, description: _description }
+            break
           }
-          i = i + 1;
+          i = i + 1
         }
         this.setState(
           {
@@ -112,56 +110,60 @@ class App extends Component {
         )
       }.bind(this)}></UpdateContent>
     }
-    return _article;
+    return _article
   }
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
+      <div
+        className="App"
+      >
+        <div
+          className="App-header"
+        >
           <Header
-            title={this.state.welcome.title}
-            subTitle={this.state.welcome.subTitle}
-            onChangePage={function() {
+            title={ this.state.welcome.title }
+            subTitle={ this.state.welcome.subTitle }
+            onChangePage={ function() {
               this.setState({
                 mode:'welcome',
-              });
-            }.bind(this)}
+              })
+            }.bind(this) }
           ></Header>
           <Control
-            onChangeMode={function(_mode) {
-              if(_mode === 'delete') {
-                if(window.confirm('really?')) {
-                  var _content = Array.from(this.state.content);
-                  var i = 0;
-                  while(i < _content.length) {
-                    if(_content[i].id === this.state.selected_content_id) {
-                      _content.splice(i, 1);
-                      break;
+            onChangeMode={ function(_mode) {
+              if (_mode === 'delete') {
+                if (window.confirm('really?')) {
+                  const _content = Array.from(this.state.content)
+                  let i = 0
+                  while (i < _content.length) {
+                    if (_content[i].id === this.state.selected_content_id) {
+                      _content.splice(i, 1)
+                      break
                     }
-                    i = i + 1;
+                    i = i + 1
                   }
                   this.setState({
                     mode: 'welcome',
                     content: _content,
                   })
                 }
-              }else{
+              } else {
                 this.setState({
                   mode: _mode,
                 })
               }
-            }.bind(this)}
+            }.bind(this) }
           ></Control>
           <Nav
-            onChangePage={function(id) {
+            onChangePage={ function(id) {
               this.setState({
                 mode: 'read',
                 selected_content_id: Number(id),
-              });
-            }.bind(this)}
-            data={this.state.content}
+              })
+            }.bind(this) }
+            data={ this.state.content }
           ></Nav>
-          {this.getContent()}
+          { this.getContent() }
           <Footer></Footer>
         </div>
       </div>
@@ -169,4 +171,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App

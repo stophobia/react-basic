@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 class ReadContent extends Component {
   render() {
@@ -11,4 +11,4 @@ class ReadContent extends Component {
   }
 }
 
-export default ReadContent;
+export default ReadContent

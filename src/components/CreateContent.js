@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import '../createcontent.css';
+import React, { Component } from 'react'
+import '../createcontent.css'
 
 class CreateContent extends Component {
   render() {
@@ -10,23 +10,32 @@ class CreateContent extends Component {
           className="create"
           action="/create_process"
           method="post"
-          onSubmit={function(e) {
-            e.preventDefault();
+          onSubmit={ function(e) {
+            e.preventDefault()
             this.props.onSubmit(
               e.target.title.value,
               e.target.desc.value
             )
-          }.bind(this)}
+          }.bind(this) }
         >
-          <input type="text" name="title" placeholder="title" />
+          <input
+            type="text"
+            name="title"
+            placeholder="title"
+          />
           <br />
-          <textarea name="desc" placeholder="description" />
+          <textarea
+            name="desc"
+            placeholder="description"
+          />
           <br />
-          <input type="submit" />
+          <input
+            type="submit"
+          />
         </form>
       </article>
     )
   }
 }
 
-export default CreateContent;
+export default CreateContent

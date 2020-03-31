@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import '../createcontent.css';
+import React, { Component } from 'react'
+import '../createcontent.css'
 
 class UpdateContent extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       id: this.props.data.id,
       title: this.props.data.title,
       description: this.props.data.description,
     }
-    this.inputFormHandler = this.inputFormHandler.bind(this);
+    this.inputFormHandler = this.inputFormHandler.bind(this)
   }
   inputFormHandler(e) {
-    this.setState({[e.target.name]: e.target.value});
+    this.setState({[e.target.name]: e.target.value})
   }
   render() {
     return (
@@ -23,7 +23,7 @@ class UpdateContent extends Component {
           action="/update_process"
           method="post"
           onSubmit={function(e) {
-            e.preventDefault();
+            e.preventDefault()
             this.props.onSubmit(
               this.state.id,
               this.state.title,
@@ -31,7 +31,11 @@ class UpdateContent extends Component {
             )
           }.bind(this)}
         >
-          <input type="hidden" name="id" value={this.state.id} />
+          <input
+            type="hidden"
+            name="id"
+            value={this.state.id}
+          />
           <input
             type="text"
             name="title"
@@ -47,11 +51,13 @@ class UpdateContent extends Component {
             onChange={this.inputFormHandler}
           />
           <br />
-          <input type="submit" />
+          <input
+            type="submit"
+          />
         </form>
       </article>
     )
   }
 }
 
-export default UpdateContent;
+export default UpdateContent
