@@ -16,8 +16,8 @@ class App extends Component {
       mode: 'read',
       selected_content_id: 0,
       welcome: {
-        title: 'Welcome to React World',
-        subTitle: 'This is test project.',
+        title: 'React Memo',
+        subTitle: 'Memo and enjoy.',
       },
       content: [
         {
